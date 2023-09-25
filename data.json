@@ -1,0 +1,86 @@
+[
+  {
+    "ID": "001",
+    "bookTitle": "Berserk",
+    "author": "Kentaro Miura",
+    "demographic": "Seinen",
+    "magazine": "Young Animal",
+    "yearPublished": "1989",
+    "volumes": "41",
+    "status": "Ongoing",
+    "genre": "Dark Fantasy",
+    "rating": "9.5"
+  },
+  {
+    "ID": "002",
+    "bookTitle": "One Piece",
+    "author": "Eiichiro Oda",
+    "demographic": "Shounen",
+    "magazine": "Weekly Shōnen Jump",
+    "yearPublished": "1997",
+    "volumes": "106",
+    "status": "Ongoing",
+    "genre": "Adventure",
+    "rating": "9.4"
+  },
+  {
+    "ID": "003",
+    "bookTitle": "Death Note",
+    "author": "Takeshi Obata",
+    "demographic": "Shounen",
+    "magazine": "Weekly Shōnen Jump",
+    "yearPublished": "2003",
+    "volumes": "12",
+    "status": "Complete",
+    "genre": "Psychological",
+    "rating": "8.9"
+  },
+  {
+    "ID": "004",
+    "bookTitle": "Bleach",
+    "author": "Tite Kubo",
+    "demographic": "Shounen",
+    "magazine": "Weekly Shōnen Jump",
+    "yearPublished": "2001",
+    "volumes": "74",
+    "status": "Complete",
+    "genre": "Action",
+    "rating": "8.3"
+  },
+  {
+    "ID": "005",
+    "bookTitle": "Vagabond",
+    "author": "Takehiko Inoue",
+    "demographic": "Seinen",
+    "magazine": "Morning",
+    "yearPublished": "1998",
+    "volumes": "37",
+    "status": "On Hiatus(2015)",
+    "genre": "Historical Epic",
+    "rating": "8.8"
+  },
+  {
+    "ID": "006",
+    "bookTitle": "20th Century Boys",
+    "author": "Naoki Urasawa",
+    "demographic": "Seinen",
+    "magazine": "Big Comic Spirits",
+    "yearPublished": "1999",
+    "volumes": "22",
+    "status": "Complete",
+    "genre": "Detective Mystery",
+    "rating": "8.9"
+  },
+  {
+    "ID": "007",
+    "bookTitle": "Jujutsu Kaisen",
+    "author": "Gege Akutami",
+    "demographic": "Shounen",
+    "magazine": "Weekly Shōnen Jump",
+    "yearPublished": "2018",
+    "volumes": "24",
+    "status": "Ongoing",
+    "genre": "Supernatural",
+    "rating": "9.2"
+  }
+]
