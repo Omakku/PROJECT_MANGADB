@@ -54,25 +54,81 @@ body {
 }
 
 #lil-text-container {
+  color: rgb(255, 255, 255);
   margin-top: 2%;
 }
 
-.cell-row > th {
-  font-size: 1.2rem;
+.some-form {
+  border-radius: 20px;
+  padding: 2vh;
+  background-color: rgba(0, 0, 0, 0.897);
+  width: 50%;
 }
 
-#refresh {
-  margin-top: 2%;
+.input_form {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.label_input_box_light {
+  background-color: rgba(250, 183, 183, 0.301);
+  padding-left: 3px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.label_input_box_dark {
+  background-color: rgba(255, 255, 255, 0.26);
+  padding-left: 3px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.form_labels {
+  margin-left: 10px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  flex: 1;
+  text-align: left;
+}
+
+.form_inputs {
+  flex: 1;
+  width: 100%;
+  border: none;
+  border-radius: 10px 5px 5px 10px;
+  padding: 5px;
+  background-color: rgba(245, 245, 245, 0.267);
+  font-size: 18px;
+  color: white;
+}
+
+.form_btn_box {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.actual-btns {
+  margin: 10px 30px 0px 30px;
   border: none;
   border-radius: 10px;
-  padding: 15px;
+  padding: 5px 25px 5px 25px;
   font-size: 1.2rem;
   font-weight: bold;
   color: white;
   background-color: rgba(214, 0, 43, 0.801);
+  cursor: pointer;
 }
 
-#refresh:hover {
+.actual-btns:hover {
   transition: 0.5s;
   transform: translateY(-5px);
   background-color: rgb(145, 4, 32);

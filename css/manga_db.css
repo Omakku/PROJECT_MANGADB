@@ -55,8 +55,8 @@ body {
 
 #lil-text-container {
   width: 50%;
-  padding-top: 3%;
-  padding-bottom: 3%;
+  padding-top: 3vh;
+  padding-bottom: 3vh;
   margin-top: 4%;
   background-color: black;
   color: white;

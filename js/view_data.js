@@ -1,8 +1,8 @@
-var jsonObject
+var jsonObject;
 
-$.getJSON("/data.json", function(data) {
-    jsonObject = data;
-    main();
+$.getJSON("/data.json", function (data) {
+  jsonObject = data;
+  main();
 });
 
 function main() {
@@ -33,23 +33,31 @@ function showTable() {
 
 $("#refresh").click(function () {
   var newBook = {
-    ID: "somevalue",
-    author: "Sir Kevin Squires the Great",
-    bookTitle: "Amazin!",
-    isbn: "123123",
-    publisher: "ur mom",
-    yearPublished: "1812",
+    ID: "008",
+    bookTitle: "Test title",
+    author: "Test author",
+    demographic: "Test demo",
+    magazine: "Test magazine",
+    yearPublished: "Test yearPub",
+    volumes: "# volumes",
+    status: "Test status",
+    genre: "Test genre",
+    rating: "Test rating",
   };
 
   jsonObject.push(newBook);
 
   var anotherBook = {};
-  anotherBook.ID = "94";
-  anotherBook.author = "Luis The Alright";
-  anotherBook.bookTitle = "Hello Joe";
-  anotherBook.isbn = "34566666655555";
-  anotherBook.publisher = "Gojo";
-  anotherBook.yearPublished = "1999";
+  anotherBook.ID = "009";
+  anotherBook.bookTitle = "Test title";
+  anotherBook.author = "Test author";
+  anotherBook.demographic = "Test demo";
+  anotherBook.magazine = "Test magazine";
+  anotherBook.yearPublished = "Test yearPub";
+  anotherBook.volumes = "# volumes";
+  anotherBook.status = "Test status";
+  anotherBook.genre = "Test genre";
+  anotherBook.rating = "Test rating";
 
   jsonObject.push(anotherBook);
 
