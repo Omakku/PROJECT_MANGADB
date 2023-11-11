@@ -4,14 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MJ Enter Data</title>
-    <link rel="stylesheet" href="/css/enter_data.css" />
+    <link rel="stylesheet" href="/client/css/enter_data.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="/js/enter_data.js" async></script>
+    <script src="/client/js/enter_data.js" async></script>
   </head>
   <body>
     <div class="container-fluid" id="main-container">
@@ -19,66 +19,71 @@
 
       <div class="link-list">
         <ul>
-          <li class="list-item"><a href="manga_homepage.html">Home</a></li>
-          <li class="list-item"><a href="enter_data.html">Enter Data</a></li>
-          <li class="list-item"><a href="view_data.html">View Data</a></li>
-          <li class="list-item"><a href="browse_data.html">Browse Data</a></li>
+          <li class="list-item">
+            <a href="manga_homepage.html">Home</a>
+          </li>
+          <li class="list-item">
+            <a href="enter_data.html">Enter Data</a>
+          </li>
+          <li class="list-item">
+            <a href="view_data.html">View Data</a>
+          </li>
+          <li class="list-item">
+            <a href="browse_data.html">Browse Data</a>
+          </li>
         </ul>
       </div>
 
       <div class="container-sm" id="lil-text-container">
         <div class="input_form">
           <form class="some-form">
-            <div class="label_input_box_dark">
-              <label class="form_labels" for="ID">ID</label>
-              <input id="input1" class="form_inputs" type="ID" />
-            </div>
-
             <div class="label_input_box_light">
-              <label class="form_labels" for="Title">Title</label>
-              <input id="input2" class="form_inputs" type="Title" />
+              <label class="form_labels" for="mangaTitle">Title</label>
+              <input id="mangaTitle" class="form_inputs" type="text" />
             </div>
 
             <div class="label_input_box_dark">
-              <label class="form_labels" for="Artist">Artist</label>
-              <input id="input3" class="form_inputs" type="Artist" />
+              <label class="form_labels" for="mangaArtist">Artist</label>
+              <input id="mangaArtist" class="form_inputs" type="text" />
             </div>
 
             <div class="label_input_box_light">
-              <label class="form_labels" for="Demographic">Demographic</label>
-              <input id="input4" class="form_inputs" type="Demographic" />
+              <label class="form_labels" for="mangaDemographic"
+                >Demographic</label
+              >
+              <input id="mangaDemographic" class="form_inputs" type="text" />
             </div>
 
             <div class="label_input_box_dark">
-              <label class="form_labels" for="Magazine">Magazine</label>
-              <input id="input5" class="form_inputs" type="Magazine" />
+              <label class="form_labels" for="mangaMagazine">Magazine</label>
+              <input id="mangaMagazine" class="form_inputs" type="text" />
             </div>
 
             <div class="label_input_box_light">
-              <label class="form_labels" for="Year_Published"
+              <label class="form_labels" for="yearPublished"
                 >Year Published</label
               >
-              <input id="input6" class="form_inputs" type="Year_Published" />
+              <input id="yearPublished" class="form_inputs" type="text" />
             </div>
 
             <div class="label_input_box_dark">
-              <label class="form_labels" for="Volumes">Volumes</label>
-              <input id="input7" class="form_inputs" type="Volumes" />
+              <label class="form_labels" for="volumes">Volumes</label>
+              <input id="volumes" class="form_inputs" type="text" />
             </div>
 
             <div class="label_input_box_light">
-              <label class="form_labels" for="Status">Status</label>
-              <input id="input8" class="form_inputs" type="Status" />
+              <label class="form_labels" for="mangaStatus">Status</label>
+              <input id="mangaStatus" class="form_inputs" type="text" />
             </div>
 
             <div class="label_input_box_dark">
-              <label class="form_labels" for="Genre">Genre</label>
-              <input id="input9" class="form_inputs" type="Genre" />
+              <label class="form_labels" for="mangaGenre">Genre</label>
+              <input id="mangaGenre" class="form_inputs" type="text" />
             </div>
 
             <div class="label_input_box_light">
-              <label class="form_labels" for="Rating">Rating</label>
-              <input id="input10" class="form_inputs" type="Rating" />
+              <label class="form_labels" for="rating">Rating</label>
+              <input id="rating" class="form_inputs" type="text" />
             </div>
 
             <div class="form_btn_box">

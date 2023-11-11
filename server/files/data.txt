@@ -1,0 +1,1 @@
+[{"ID":1699494094893,"mangaTitle":"1","mangaArtist":"1","mangaDemographic":"1","mangaMagazine":"1","yearPublished":"1","volumes":"1","mangaStatus":"1","mangaGenre":"1","rating":"1"},{"ID":1699494112540,"mangaTitle":"2","mangaArtist":"2","mangaDemographic":"2","mangaMagazine":"2","yearPublished":"2","volumes":"2","mangaStatus":"2","mangaGenre":"2","rating":"2"}]

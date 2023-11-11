@@ -1,29 +1,40 @@
-var jsonObject;
-
-$.getJSON("/data.json", function (data) {
-  jsonObject = data;
-  main();
-});
-
 function main() {
-  console.log(jsonObject);
-
-  showTable();
+  retrieveData();
 }
 
-function showTable() {
+function retrieveData() {
+  $.ajax({
+    url: "http://localhost:5000" + "/get-records",
+    type: "get",
+    success: function (response) {
+      var data = JSON.parse(response);
+      console.log(response)
+      console.log(data)
+      if (data.msg == "SUCCESS") {
+        showTable(data.jsonObject);
+      } else {
+        console.log(data.msg);
+      }
+    },
+    error: function (err) {
+      console.log(err);
+    },
+  });
+}
+
+function showTable(jsonObject) {
   var htmlString = "";
   for (var i = 0; i < jsonObject.length; i++) {
     htmlString += "<tr>";
     htmlString += "<td>" + jsonObject[i].ID + "</td>";
-    htmlString += "<td>" + jsonObject[i].bookTitle + "</td>";
-    htmlString += "<td>" + jsonObject[i].author + "</td>";
-    htmlString += "<td>" + jsonObject[i].demographic + "</td>";
-    htmlString += "<td>" + jsonObject[i].magazine + "</td>";
+    htmlString += "<td>" + jsonObject[i].mangaTitle + "</td>";
+    htmlString += "<td>" + jsonObject[i].mangaArtist + "</td>";
+    htmlString += "<td>" + jsonObject[i].mangaDemographic + "</td>";
+    htmlString += "<td>" + jsonObject[i].mangaMagazine + "</td>";
     htmlString += "<td>" + jsonObject[i].yearPublished + "</td>";
     htmlString += "<td>" + jsonObject[i].volumes + "</td>";
-    htmlString += "<td>" + jsonObject[i].status + "</td>";
-    htmlString += "<td>" + jsonObject[i].genre + "</td>";
+    htmlString += "<td>" + jsonObject[i].mangaStatus + "</td>";
+    htmlString += "<td>" + jsonObject[i].mangaGenre + "</td>";
     htmlString += "<td>" + jsonObject[i].rating + "</td>";
     htmlString += "</tr>";
   }
@@ -32,16 +43,16 @@ function showTable() {
 }
 
 $("#refresh").click(function () {
-  var newBook = {
+ /* var newBook = {
     ID: "008",
-    bookTitle: "Test title",
-    author: "Test author",
-    demographic: "Test demo",
-    magazine: "Test magazine",
+    mangaTitle: "Test title",
+    mangaArtist: "Test author",
+    mangaDemographic: "Test demo",
+    mangaMagazine: "Test magazine",
     yearPublished: "Test yearPub",
     volumes: "# volumes",
-    status: "Test status",
-    genre: "Test genre",
+    mangaStatus: "Test status",
+    mangaGenre: "Test genre",
     rating: "Test rating",
   };
 
@@ -49,17 +60,17 @@ $("#refresh").click(function () {
 
   var anotherBook = {};
   anotherBook.ID = "009";
-  anotherBook.bookTitle = "Test title";
-  anotherBook.author = "Test author";
-  anotherBook.demographic = "Test demo";
-  anotherBook.magazine = "Test magazine";
+  anotherBook.mangaTitle = "Test title";
+  anotherBook.mangaArtist = "Test author";
+  anotherBook.mangaDemographic = "Test demo";
+  anotherBook.mangaMagazine = "Test magazine";
   anotherBook.yearPublished = "Test yearPub";
   anotherBook.volumes = "# volumes";
-  anotherBook.status = "Test status";
-  anotherBook.genre = "Test genre";
+  anotherBook.mangaStatus = "Test status";
+  anotherBook.mangaGenre = "Test genre";
   anotherBook.rating = "Test rating";
 
-  jsonObject.push(anotherBook);
-
-  showTable();
+  jsonObject.push(anotherBook);*/
 });
+
+main();
