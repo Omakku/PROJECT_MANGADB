@@ -6,10 +6,10 @@ const DATABASE_FILE = path.join(__dirname + "/../server/files/data.txt");
 var services = function (app) {
   app.post("/write-record", function (req, res) {
     console.log("write record");
-    var id = Date.now();
+    var mangaID = Date.now();
 
     var bookData = {
-      ID: id,
+      mangaID: mangaID,
       mangaTitle: req.body.mangaTitle,
       mangaArtist: req.body.mangaArtist,
       mangaDemographic: req.body.mangaDemographic,
@@ -65,14 +65,45 @@ var services = function (app) {
           res.send(JSON.stringify({ msg: err }));
         } else {
           jsonObject = JSON.parse(data);
-          res.send(
-            JSON.stringify({ msg: "SUCCESS", jsonObject: jsonObject })
-          );
+          res.send(JSON.stringify({ msg: "SUCCESS", jsonObject: jsonObject }));
         }
       });
     } else {
       var data = [];
       res.send(JSON.stringify({ msg: "SUCCESS", jsonObject: data }));
+    }
+  });
+
+  app.delete("/delete-records", function (req, res) {
+    var idToDel = Number(req.body.mangaID);
+    if (fs.existsSync(DATABASE_FILE)) {
+      fs.readFile(DATABASE_FILE, "utf-8", function (err, data) {
+        if (err) {
+          res.send(JSON.stringify({ msg: err }));
+        } else {
+          data = JSON.parse(data);
+
+          const filteredData = data.filter((manga) => {
+            const mangaId = manga.mangaID;
+            return mangaId !== idToDel;
+          });
+
+          let newTable = JSON.stringify(filteredData);
+          res.send(JSON.stringify({ msg: "SUCCESS", data: filteredData }));
+
+          fs.writeFile(DATABASE_FILE, newTable, "utf8", (err) => {
+            if (err) {
+              console.error("Error writing to the file:", err);
+            } else {
+              console.log(
+                "Manga with mangaID",
+                idToDel,
+                "removed successfully."
+              );
+            }
+          });
+        }
+      });
     }
   });
 };

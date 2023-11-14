@@ -20,16 +20,25 @@
 
       <div class="link-list">
         <ul>
-          <li class="list-item"><a href="/client/manga_homepage.html">Home</a></li>
-          <li class="list-item"><a href="/client/enter_data.html">Enter Data</a></li>
-          <li class="list-item"><a href="/client/view_data.html">View Data</a></li>
-          <li class="list-item"><a href="/client/browse_data.html">Browse Data</a></li>
+          <li class="list-item">
+            <a href="/client/manga_homepage.html">Home</a>
+          </li>
+          <li class="list-item">
+            <a href="/client/enter_data.html">Enter Data</a>
+          </li>
+          <li class="list-item">
+            <a href="/client/view_data.html">View Data</a>
+          </li>
+          <li class="list-item">
+            <a href="/client/browse_data.html">Browse Data</a>
+          </li>
         </ul>
       </div>
 
       <div class="container-sm" id="lil-text-container">
-        <div>
-          <table class="table table-dark table-striped">
+        <div class="table-bdr">
+          <table
+            class="table table-dark table-striped rounded-3 overflow-hidden">
             <thead>
               <tr class="table-dark">
                 <th>ID</th>
@@ -42,16 +51,16 @@
                 <th>Status</th>
                 <th>Genre</th>
                 <th>Rating</th>
+                <th class="deleteColumn"></th>
               </tr>
             </thead>
             <tbody id="libraryTable"></tbody>
           </table>
         </div>
 
-        <div id="test"></div>
-
         <div>
-          <button id="refresh">Refresh Table</button>
+          <button class="table-btns" id="refresh">Refresh Table</button>
+          <button class="table-btns" id="edit">Edit Table</button>
         </div>
       </div>
     </div>

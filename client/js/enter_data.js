@@ -23,8 +23,6 @@ $("#submit").click(function () {
     rating: rating,
   };
 
-  console.log("before ajax");
-
   $.ajax({
     url: "http://localhost:5000" + "/write-record",
     type: "post",
@@ -45,7 +43,7 @@ $("#submit").click(function () {
 });
 
 $("#clear").click(function () {
-  $("#id").val("");
+  $("#mangaID").val("");
   $("#mangaTitle").val("");
   $("#mangaArtist").val("");
   $("#mangaDemographic").val("");
