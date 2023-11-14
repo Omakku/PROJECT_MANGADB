@@ -28,7 +28,7 @@ $("#submit").click(function () {
     type: "post",
     data: jsonObject,
     success: function (response) {
-      console.log("inside success")
+      console.log("inside success");
       var data = JSON.parse(response);
       if (data.msg == "SUCCESS") {
         alert("Data successfully saved!");

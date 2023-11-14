@@ -5,6 +5,7 @@ function main() {
 }
 
 $("#refresh").click(function () {
+  location.reload();
   retrieveData();
 });
 
@@ -44,6 +45,11 @@ function deleteData(jsonID) {
     success: function (response) {
       var data = JSON.parse(response);
       if (data.msg == "SUCCESS") {
+        alert(
+          "ID: " +
+            jsonID +
+            " has been removed!\nPlease refresh table to confirm changes!"
+        );
         console.log(data);
       } else {
         console.log(data.msg);
@@ -71,7 +77,7 @@ function showTable(jsonObject) {
     htmlString += "<td>" + jsonObject[i].mangaGenre + "</td>";
     htmlString += "<td>" + jsonObject[i].rating + "</td>";
     htmlString +=
-      "<td class='deleteColumn'> <button class='deleteRow-btn' data-id='" +
+      "<td class='deleteColumn' style='display: none'> <button class='deleteRow-btn' data-id='" +
       jsonObject[i].mangaID +
       "'>DELETE</button> </td>";
     htmlString += "</tr>";
@@ -81,9 +87,14 @@ function showTable(jsonObject) {
 
   $(".deleteRow-btn").click(function () {
     var idToDel = $(this).attr("data-id");
-    console.log("DELETE THIS ROW: ");
-    console.log(idToDel);
     deleteData(idToDel);
+  });
+
+  $("#edit").click(function () {
+    const deleteRows = document.querySelectorAll(".deleteColumn");
+    deleteRows.forEach((row) => {
+      row.removeAttribute("style");
+    });
   });
 }
 

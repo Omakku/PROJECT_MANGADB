@@ -81,6 +81,18 @@ body {
   color: rgb(255, 255, 255);
 }
 
-.deleteColumn {
-  /*display: none;*/
+.deleteRow-btn {
+  border: none;
+  border-radius: 1px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: white;
+  background-color: rgb(214, 121, 0);
+}
+
+.deleteRow-btn:hover {
+  transition: 0.5s;
+  transform: translateY(-3px);
+  background-color: rgb(145, 4, 32);
+  color: rgb(255, 255, 255);
 }
