@@ -9,7 +9,7 @@ body {
 }
 
 #big-title {
-  color: crimson;
+  color: rgba(145, 35, 35, 0.9);
   font-weight: bold;
   font-size: 6rem;
   margin-top: 2%;

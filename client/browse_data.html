@@ -4,14 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MJ Browse Data</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="/client/js/browse_data.js" async></script>
     <link rel="stylesheet" href="/client/css/manga_db.css" />
+    <link rel="stylesheet" href="/client/css/browse_data.css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous" />
   </head>
-  <body>
+  <body data-ng-app="browseMangaApp" data-ng-controller="browseMangaCtrl">
     <div class="container-fluid" id="main-container">
       <h1 id="big-title">Browse Data</h1>
 
@@ -32,17 +35,106 @@
         </ul>
       </div>
 
-      <div class="container-sm" id="lil-text-container">
-        <section>
-          <h1>Welcome!</h1>
-          <p>Theres gonna be some good stuff here.</p>
-          <p>
-            Planned data elements at the moment are: Manga Title, Author,
-            Current Magazine Publisher, Date Created, Number of Volumes, Number
-            of Chapters, Status (Ongoing, Hiatus, Completed, etc), Genre,
-            Demographic, and Rating.
-          </p>
-        </section>
+      <div class="container-sm" id="mini-container">
+        <div>
+          <label for="mangaID">Database ID: </label>
+          <label
+            style="font-weight: bold; color: rgba(145, 35, 35, 0.801)"
+            id="mangaID"
+            >{{ obj.mangaID }}</label
+          >
+        </div>
+        <div>
+          <label for="title">Title: </label>
+          <label
+            style="font-weight: bold; color: rgba(145, 35, 35, 0.801)"
+            id="title"
+            >{{ obj.mangaTitle }}</label
+          >
+        </div>
+        <div>
+          <label for="artist">Artist: </label>
+          <label
+            style="font-weight: bold; color: rgba(145, 35, 35, 0.801)"
+            id="artist"
+            >{{ obj.mangaArtist }}</label
+          >
+        </div>
+        <div>
+          <label for="demographic">Demographic: </label>
+          <label
+            style="font-weight: bold; color: rgba(145, 35, 35, 0.801)"
+            id="demographic"
+            >{{ obj.mangaDemographic }}</label
+          >
+        </div>
+        <div>
+          <label for="demographic">Magazine: </label>
+          <label
+            style="font-weight: bold; color: rgba(145, 35, 35, 0.801)"
+            id="demographic"
+            >{{ obj.mangaMagazine }}</label
+          >
+        </div>
+        <div>
+          <label for="magazine">Year Published: </label>
+          <label
+            style="font-weight: bold; color: rgba(145, 35, 35, 0.801)"
+            id="magazine">
+            {{obj.yearPublished }}
+          </label>
+        </div>
+        <div>
+          <label for="yearPublished">Volumes: </label>
+          <label
+            style="font-weight: bold; color: rgba(145, 35, 35, 0.801)"
+            id="yearPublished">
+            {{obj.volumes }}
+          </label>
+        </div>
+        <div>
+          <label for="volumes">Status: </label>
+          <label
+            style="font-weight: bold; color: rgba(145, 35, 35, 0.801)"
+            id="volumes">
+            {{obj.mangaStatus }}
+          </label>
+        </div>
+        <div>
+          <label for="status">Genre: </label>
+          <label
+            style="font-weight: bold; color: rgba(145, 35, 35, 0.801)"
+            id="status">
+            {{obj.mangaGenre }}
+          </label>
+        </div>
+        <div>
+          <label for="genre">Rating: </label>
+          <label
+            style="font-weight: bold; color: rgba(145, 35, 35, 0.801)"
+            id="genre">
+            {{obj.rating }}
+          </label>
+        </div>
+
+        <div class="form_btn_box">
+          <button
+            class="actual-btns"
+            id="previous"
+            data-ng-click="changeManga(-1)"
+            data-ng-hide="hidePrev">
+            &lt&lt&lt Previous Manga
+          </button>
+        </div>
+        <div class="form_btn_box">
+          <button
+            class="actual-btns"
+            id="next"
+            data-ng-click="changeManga(1)"
+            data-ng-hide="hideNext">
+            Next Manga &gt&gt&gt
+          </button>
+        </div>
       </div>
     </div>
 
