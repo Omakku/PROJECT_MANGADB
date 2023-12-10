@@ -82,7 +82,6 @@ var services = function (app) {
           res.send(JSON.stringify({ msg: err }));
         } else {
           data = JSON.parse(data);
-
           const filteredData = data.filter((manga) => {
             const mangaId = manga.mangaID;
             return mangaId !== idToDel;
