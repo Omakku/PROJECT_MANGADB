@@ -1,6 +1,5 @@
 [
   {
-    "mangaID": 1,
     "mangaTitle": "Attack on Titan",
     "mangaArtist": "Hajime Isayama",
     "mangaDemographic": "Shonen",
@@ -12,7 +11,6 @@
     "rating": "10"
   },
   {
-    "mangaID": 2,
     "mangaTitle": "One Piece",
     "mangaArtist": "Eiichiro Oda",
     "mangaDemographic": "Shonen",
@@ -24,7 +22,6 @@
     "rating": "10"
   },
   {
-    "mangaID": 3,
     "mangaTitle": "Fullmetal Alchemist",
     "mangaArtist": "Hiromu Arakawa",
     "mangaDemographic": "Shonen",
@@ -36,7 +33,6 @@
     "rating": "9"
   },
   {
-    "mangaID": 4,
     "mangaTitle": "Death Note",
     "mangaArtist": "Tsugumi Ohba",
     "mangaDemographic": "Shonen",
@@ -48,7 +44,6 @@
     "rating": "9"
   },
   {
-    "mangaID": 5,
     "mangaTitle": "Naruto",
     "mangaArtist": "Masashi Kishimoto",
     "mangaDemographic": "Shonen",

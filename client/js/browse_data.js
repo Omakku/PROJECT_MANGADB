@@ -12,7 +12,7 @@ app.controller("browseMangaCtrl", function ($scope, $http) {
     }).then(
       function (response) {
         if (response.data.msg === "SUCCESS") {
-          manga = response.data.jsonObject;
+          manga = response.data.manga;
           console.log(response);
           $scope.obj = manga[activeManga];
           $scope.showHide();

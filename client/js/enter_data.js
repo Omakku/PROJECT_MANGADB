@@ -11,7 +11,7 @@ $("#submit").click(function () {
   var mangaGenre = $("#mangaGenre").val();
   var rating = $("#rating").val();
 
-  var jsonObject = {
+  var manga = {
     mangaTitle: mangaTitle,
     mangaArtist: mangaArtist,
     mangaDemographic: mangaDemographic,
@@ -26,7 +26,7 @@ $("#submit").click(function () {
   $.ajax({
     url: "http://localhost:5000" + "/write-record",
     type: "post",
-    data: jsonObject,
+    data: manga,
     success: function (response) {
       console.log("inside success");
       var data = JSON.parse(response);
@@ -43,7 +43,6 @@ $("#submit").click(function () {
 });
 
 $("#clear").click(function () {
-  $("#mangaID").val("");
   $("#mangaTitle").val("");
   $("#mangaArtist").val("");
   $("#mangaDemographic").val("");

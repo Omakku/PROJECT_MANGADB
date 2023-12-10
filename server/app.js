@@ -19,14 +19,15 @@ app.use("/client", express.static(path.resolve(__dirname + "/../client/")));
 var server;
 var port = 5000;
 
-//page ears (router file)
+//page listeners (router file)
 
 //service listenas
 var router = require("./router.js");
 router(app);
 
 var services = require("./services.js");
-services(app);
+services.services(app);
+services.initializeDatabase();
 
 //start server
 server = app.listen(port, function (err) {

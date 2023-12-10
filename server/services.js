@@ -1,7 +1,10 @@
 const fs = require("fs");
 const path = require("path");
+const MongoClient = require("mongodb").MongoClient;
+const ObjectId = require("mongodb").ObjectId;
+const dbFile = require(path.join(__dirname + "/../server/files/manga.json"));
 
-const DATABASE_FILE = path.join(__dirname + "/../server/files/data.txt");
+var dbURL = "mongodb://127.0.0.1";
 
 var services = function (app) {
   app.post("/write-record", function (req, res) {
@@ -21,90 +24,110 @@ var services = function (app) {
       rating: req.body.rating,
     };
 
-    var jsonObject = [];
+    console.log(JSON.stringify({ bookData }));
+    MongoClient.connect(dbURL, { useUnifiedTopology: true }, function (err, client) {
+      if (err) {
+        return res.status(201).send(JSON.stringify({ msg: err }));
+      } else {
+        var dbo = client.db("mangadb");
 
-    if (fs.existsSync(DATABASE_FILE)) {
-      fs.readFile(DATABASE_FILE, "utf-8", function (err, data) {
-        if (err) {
-          res.send(JSON.stringify({ msg: err }));
-        } else {
-          jsonObject = JSON.parse(data);
-
-          jsonObject.push(bookData);
-
-          fs.writeFile(
-            DATABASE_FILE,
-            JSON.stringify(jsonObject),
-            function (err) {
-              if (err) {
-                res.send(JSON.stringify({ msg: err }));
-              } else {
-                res.send(JSON.stringify({ msg: "SUCCESS" }));
-              }
-            }
-          );
-        }
-      });
-    } else {
-      jsonObject.push(bookData);
-
-      fs.writeFile(DATABASE_FILE, JSON.stringify(jsonObject), function (err) {
-        if (err) {
-          res.send(JSON.stringify({ msg: err }));
-        } else {
-          res.send(JSON.stringify({ msg: "SUCCESS" }));
-        }
-      });
-    }
+        dbo.collection("manga").insertOne(bookData, function (err) {
+          if (err) {
+            return res.status(201).send(JSON.stringify({ msg: err }));
+          } else {
+            console.log(bookData);
+            return res.status(200).send(JSON.stringify({ msg: "SUCCESS" }));
+          }
+        });
+      }
+    });
   });
 
   app.get("/get-records", function (req, res) {
-    if (fs.existsSync(DATABASE_FILE)) {
-      fs.readFile(DATABASE_FILE, "utf-8", function (err, data) {
-        if (err) {
-          res.send(JSON.stringify({ msg: err }));
-        } else {
-          jsonObject = JSON.parse(data);
-          res.send(JSON.stringify({ msg: "SUCCESS", jsonObject: jsonObject }));
-        }
-      });
-    } else {
-      var data = [];
-      res.send(JSON.stringify({ msg: "SUCCESS", jsonObject: data }));
-    }
+    MongoClient.connect(dbURL, { useUnifiedTopology: true }, function (err, client) {
+      if (err) {
+        return res.status(201).send(JSON.stringify({ msg: err }));
+      } else {
+        var dbo = client.db("mangadb");
+
+        dbo
+          .collection("manga")
+          .find()
+          .toArray(function (err, data) {
+            if (err) {
+              return res.status(201).send(JSON.stringify({ msg: err }));
+            } else {
+              console.log(data);
+              return res
+                .status(200)
+                .send(JSON.stringify({ msg: "SUCCESS", manga: data }));
+            }
+          });
+      }
+    });
   });
 
   app.delete("/delete-records", function (req, res) {
-    var idToDel = Number(req.body.mangaID);
-    if (fs.existsSync(DATABASE_FILE)) {
-      fs.readFile(DATABASE_FILE, "utf-8", function (err, data) {
-        if (err) {
-          res.send(JSON.stringify({ msg: err }));
-        } else {
-          data = JSON.parse(data);
-          const filteredData = data.filter((manga) => {
-            const mangaId = manga.mangaID;
-            return mangaId !== idToDel;
-          });
+    var idToDel = req.body._id;
 
-          let newTable = JSON.stringify(filteredData);
-          res.send(JSON.stringify({ msg: "SUCCESS", data: filteredData }));
+    var s_id = new ObjectId(idToDel);
+    var search = { _id: s_id };
 
-          fs.writeFile(DATABASE_FILE, newTable, "utf8", (err) => {
-            if (err) {
-              console.error("Error writing to the file:", err);
+    MongoClient.connect(dbURL, { useUnifiedTopology: true }, function (err, client) {
+      if (err) {
+        return res.status(201).send(JSON.stringify({ msg: err }));
+      } else {
+        var dbo = client.db("mangadb");
+
+        dbo.collection("manga").deleteOne(search, function (err) {
+          if (err) {
+            return res.status(201).send(JSON.stringify({ msg: err }));
+          } else {
+            return res.status(200).send(JSON.stringify({ msg: "SUCCESS" }));
+          }
+        });
+      }
+    });
+  });
+};
+
+//To Initialize the manga table
+var initializeDatabase = function () {
+  MongoClient.connect(dbURL, { useUnifiedTopology: true }, function (err, client) {
+    if (err) {
+      console.log(err);
+    } else {
+      var dbo = client.db("mangadb");
+
+      //See if the database has any records
+      dbo
+        .collection("manga")
+        .find()
+        .toArray(function (err, data) {
+          if (err) {
+            client.close();
+            console.log(err);
+          } else {
+            if (data.length === 0) {
+              var manga = dbFile;
+
+              dbo.collection("manga").insertMany(manga, function (err) {
+                if (err) {
+                  client.close();
+                  console.log(err);
+                } else {
+                  console.log("Added seed records");
+                  client.close();
+                }
+              });
             } else {
-              console.log(
-                "Manga with mangaID",
-                idToDel,
-                "removed successfully."
-              );
+              console.log("Seed record already exist");
+              client.close();
             }
-          });
-        }
-      });
+          }
+        });
     }
   });
 };
 
-module.exports = services;
+module.exports = { services, initializeDatabase };

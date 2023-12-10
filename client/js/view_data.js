@@ -26,7 +26,7 @@ function retrieveData() {
       var data = JSON.parse(response);
       if (data.msg == "SUCCESS") {
         console.log(data);
-        showTable(data.jsonObject);
+        showTable(data.manga);
       } else {
         console.log(data.msg);
       }
@@ -41,7 +41,7 @@ function deleteData(jsonID) {
   $.ajax({
     url: "http://localhost:5000" + "/delete-records",
     type: "delete",
-    data: { mangaID: jsonID },
+    data: { _id: jsonID },
     success: function (response) {
       var data = JSON.parse(response);
       if (data.msg == "SUCCESS") {
@@ -59,26 +59,28 @@ function deleteData(jsonID) {
       console.log(err);
     },
   });
+  location.reload();
+  retrieveData();
 }
 
 //----------------------------------------------------------------
-function showTable(jsonObject) {
+function showTable(manga) {
   var htmlString = "";
-  for (var i = 0; i < jsonObject.length; i++) {
+  for (var i = 0; i < manga.length; i++) {
     htmlString += "<tr>";
-    htmlString += "<td>" + jsonObject[i].mangaID + "</td>";
-    htmlString += "<td>" + jsonObject[i].mangaTitle + "</td>";
-    htmlString += "<td>" + jsonObject[i].mangaArtist + "</td>";
-    htmlString += "<td>" + jsonObject[i].mangaDemographic + "</td>";
-    htmlString += "<td>" + jsonObject[i].mangaMagazine + "</td>";
-    htmlString += "<td>" + jsonObject[i].yearPublished + "</td>";
-    htmlString += "<td>" + jsonObject[i].volumes + "</td>";
-    htmlString += "<td>" + jsonObject[i].mangaStatus + "</td>";
-    htmlString += "<td>" + jsonObject[i].mangaGenre + "</td>";
-    htmlString += "<td>" + jsonObject[i].rating + "</td>";
+    htmlString += "<td>" + manga[i]._id + "</td>";
+    htmlString += "<td>" + manga[i].mangaTitle + "</td>";
+    htmlString += "<td>" + manga[i].mangaArtist + "</td>";
+    htmlString += "<td>" + manga[i].mangaDemographic + "</td>";
+    htmlString += "<td>" + manga[i].mangaMagazine + "</td>";
+    htmlString += "<td>" + manga[i].yearPublished + "</td>";
+    htmlString += "<td>" + manga[i].volumes + "</td>";
+    htmlString += "<td>" + manga[i].mangaStatus + "</td>";
+    htmlString += "<td>" + manga[i].mangaGenre + "</td>";
+    htmlString += "<td>" + manga[i].rating + "</td>";
     htmlString +=
       "<td class='deleteColumn' style='display: none'> <button class='deleteRow-btn' data-id='" +
-      jsonObject[i].mangaID +
+      manga[i]._id +
       "'>DELETE</button> </td>";
     htmlString += "</tr>";
   }
