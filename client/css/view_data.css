@@ -6,6 +6,7 @@ body {
 
 #main-container {
   text-align: center;
+  max-width: 70%;
 }
 
 #big-title {
@@ -53,46 +54,93 @@ body {
   color: rgb(214, 0, 43);
 }
 
-#lil-text-container {
-  margin-top: 2%;
+#demoSearch label {
+  float: left;
+  font-weight: bold;
+  font-size: 1.6rem;
+  color: white;
 }
 
-.cell-row > th {
-  font-size: 1.2rem;
+select {
+  appearance: none;
+  outline: 10px red;
+  border: 0;
+  box-shadow: none;
+  flex: 1;
+  padding: 0 1em;
+  color: #fff;
+  background-color: #3c4956;
+  background-image: none;
+  cursor: pointer;
 }
 
-.table-btns {
-  margin-top: 2%;
-  margin-left: 5%;
-  margin-right: 5%;
-  border: none;
-  border-radius: 10px;
+.select {
+  position: relative;
+  display: flex;
+  width: 6em;
+  height: 3em;
+  border-radius: 0.25em;
+  overflow: hidden;
+}
+.select::after {
+  content: "\25BC";
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  background-color: #3c4956;
+  transition: 0.25s all ease;
+  pointer-events: none;
+}
+.select:hover::after {
+  color: #f39c12;
+}
+
+#edit-form-container {
+  max-height: 50%;
+  max-width: 50%;
+  background-color: rgba(0, 0, 0, 0.87);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+.editHeader {
+  font-size: 28px;
+  font-weight: bold;
+  color: rgb(220, 20, 20);
+}
+
+input {
+  text-align: center;
+  width: 90%;
   padding: 10px;
-  font-size: 1.2rem;
+  border-radius: 25px;
+  box-sizing: border-box;
+  margin-top: 5px;
+}
+
+.bottom-btns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit {
+  background-color: #c45b3b; /* Green button color */
+  color: #fff;
+  border-radius: 50px;
+  padding: 10px 15px;
+  font-size: 16px;
   font-weight: bold;
-  color: white;
-  background-color: rgba(214, 0, 43, 0.801);
+  cursor: pointer;
 }
 
-.table-btns:hover {
-  transition: 0.5s;
-  transform: translateY(-3px);
-  background-color: rgb(145, 4, 32);
-  color: rgb(255, 255, 255);
+button:hover {
+  background-color: #9e6111; /* Darker green on hover */
 }
 
-.deleteRow-btn {
-  border: none;
-  border-radius: 1px;
-  font-size: 0.8rem;
-  font-weight: bold;
-  color: white;
-  background-color: rgb(214, 121, 0);
-}
-
-.deleteRow-btn:hover {
-  transition: 0.5s;
-  transform: translateY(-3px);
-  background-color: rgb(145, 4, 32);
-  color: rgb(255, 255, 255);
+.result-message {
+  margin-top: 20px;
+  font-size: 24px;
 }

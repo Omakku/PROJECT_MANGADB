@@ -11,10 +11,16 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous" />
 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="/client/js/view_data.js" async></script>
   </head>
-  <body>
+  <body
+    data-ng-app="viewMangaApp"
+    data-ng-controller="viewMangaCtrl"
+    data-ng-init="hideForm=true">
+    >
+
     <div class="container-fluid" id="main-container">
       <h1 id="big-title">View Data</h1>
 
@@ -35,36 +41,186 @@
         </ul>
       </div>
 
-      <div class="container-sm" id="lil-text-container">
-        <div class="table-bdr">
-          <table
-            class="table table-dark table-striped rounded-3 overflow-hidden">
-            <thead>
-              <tr class="table-dark">
-                <th>ID</th>
-                <th>Title</th>
-                <th>Artist</th>
-                <th>Demographic</th>
-                <th>Magazine</th>
-                <th>Year Published</th>
-                <th>Volumes</th>
-                <th>Status</th>
-                <th>Genre</th>
-                <th>Rating</th>
-                <th
-                  class="deleteColumn"
-                  id="deleteColumn"
-                  style="display: none"></th>
-              </tr>
-            </thead>
-            <tbody id="libraryTable"></tbody>
-          </table>
+      <section data-ng-hide="hideTable">
+        <div id="demoSearch">
+          <label for="groupby">Search by Demographic: </label>
+          <div class="select">
+            <select
+              id="groupby"
+              data-ng-model="selectedType"
+              data-ng-options="type.display for type in types"
+              data-ng-change="redrawTable()"></select>
+          </div>
         </div>
 
-        <div>
-          <button class="table-btns" id="refresh">Refresh Table</button>
-          <button class="table-btns" id="edit">Edit Table</button>
+        <div class="table-bdr" id="theTable">
+          <table
+            class="table table-dark table-striped rounded-3 overflow-hidden">
+            <tr class="table-dark">
+              <th>Title</th>
+              <th>Artist</th>
+              <th>Demographic</th>
+              <th>Magazine</th>
+              <th>Year Published</th>
+              <th>Volumes</th>
+              <th>Status</th>
+              <th>Genre</th>
+              <th>Rating</th>
+              <th></th>
+              <th></th>
+            </tr>
+
+            <tr class="table-dark" data-ng-repeat="obj in manga">
+              <td>{{ obj.mangaTitle }}</td>
+              <td>{{ obj.mangaArtist }}</td>
+              <td>{{ obj.mangaDemographic }}</td>
+              <td>{{ obj.mangaMagazine }}</td>
+              <td>{{ obj.yearPublished }}</td>
+              <td>{{ obj.volumes }}</td>
+              <td>{{ obj.mangaStatus }}</td>
+              <td>{{ obj.mangaGenre }}</td>
+              <td>{{ obj.rating }}</td>
+              <td class="buttonColumn">
+                <button data-ng-click="deleteData(obj['_id'])">DELETE</button>
+              </td>
+              <td class="buttonColumn">
+                <button data-ng-click="editManga($index)">EDIT</button>
+              </td>
+            </tr>
+          </table>
         </div>
+      </section>
+
+      <div id="edit-form-container" data-ng-hide="hideForm">
+        <section>
+          <div style="font-size: 24px">
+            <div>
+              <label data-ng-model="mangaID" hidden></label>
+
+              <label class="editHeader" for="mangaTitle">Manga Title: </label>
+              <input
+                type="text"
+                id="mangaTitle"
+                data-ng-model="mangaTitle"
+                data-ng-change="startNew()" />
+            </div>
+
+            <div>
+              <label class="editHeader" for="mangaArtist">Manga Artist: </label>
+              <input
+                type="text"
+                id="mangaArtist"
+                data-ng-model="mangaArtist"
+                data-ng-change="startNew()" />
+            </div>
+
+            <div>
+              <label class="editHeader" for="mangaDemographic"
+                >Manga Demographic:
+              </label>
+              <input
+                type="text"
+                id="mangaDemographic"
+                data-ng-model="mangaDemographic"
+                data-ng-change="startNew()" />
+            </div>
+
+            <div>
+              <label class="editHeader" for="mangaMagazine"
+                >Manga Magazine:
+              </label>
+              <input
+                type="text"
+                id="mangaMagazine"
+                data-ng-model="mangaMagazine"
+                data-ng-change="startNew()" />
+            </div>
+
+            <div>
+              <label class="editHeader" for="yearPublished"
+                >Year Published:
+              </label>
+              <input
+                type="text"
+                id="yearPublished"
+                data-ng-model="yearPublished"
+                data-ng-change="startNew()" />
+            </div>
+
+            <div>
+              <label class="editHeader" for="volumes">Volumes: </label>
+              <input
+                type="text"
+                id="volumes"
+                data-ng-model="volumes"
+                data-ng-change="startNew()" />
+            </div>
+
+            <div>
+              <label class="editHeader" for="mangaStatus">Manga Status: </label>
+              <input
+                type="text"
+                id="mangaStatus"
+                data-ng-model="mangaStatus"
+                data-ng-change="startNew()" />
+            </div>
+
+            <div>
+              <label class="editHeader" for="mangaGenre">Manga Genre: </label>
+              <input
+                type="text"
+                id="mangaGenre"
+                data-ng-model="mangaGenre"
+                data-ng-change="startNew()" />
+            </div>
+
+            <div>
+              <label class="editHeader" for="rating">Rating: </label>
+              <input
+                type="text"
+                id="rating"
+                data-ng-model="rating"
+                data-ng-change="startNew()" />
+            </div>
+            <div class="bottom-btns">
+              <div
+                style="
+                  float: left;
+                  clear: right;
+                  margin-top: 30px;
+                  margin-left: 30px;
+                ">
+                <button class="submit" data-ng-click="updateManga()">
+                  Update Manga
+                </button>
+              </div>
+
+              <div
+                style="
+                  float: left;
+                  clear: right;
+                  margin-top: 30px;
+                  margin-left: 30px;
+                ">
+                <button class="submit" data-ng-click="cancelUpdate()">
+                  Cancel
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="result-message"
+              style="
+                float: left;
+                clear: left;
+                margin-top: 20px;
+                font-size: 24px;
+                color: green;
+              ">
+              {{addResults}}
+            </div>
+          </div>
+        </section>
       </div>
     </div>
 
